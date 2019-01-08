@@ -22,6 +22,10 @@ export class SimuladoPage {
 
   }
 
+  resultado(){
+    this.navCtrl.push('ResultadoPage');
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SimuladoPage');
