@@ -1,0 +1,39 @@
+<!--
+  Generated template for the ResultadoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Resultado</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <h1>Fim do simulado!</h1>
+  <h5>Confira quantas questões você acertou.</h5>
+
+  
+  <h1 class="corretas">Respostas corretas:</h1>
+  
+  <ion-card>
+  <ion-grid *ngFor="let r of respostas">
+      <ion-row>
+        <ion-col col-3><button ion-button>{{r.alternativa}}</button></ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-card>
+
+  <h1>Marcadas pelo usuário:</h1>
+  <ion-grid>
+      <ion-row>
+        <ion-col col-3></ion-col>
+      </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,43 @@
+<ion-menu [content]="content">
+  <ion-header>
+      <ion-title>Menu</ion-title>
+  </ion-header>
+  
+  <ion-toolbar>
+   <ion-card class="menu">
+
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="../assets/imgs/avatar.jpg">
+      </ion-avatar>
+      <h2>Marty McFly</h2>
+      <p>November 5, 1955</p>
+    </ion-item>
+    <img src="../assets/imgs/gabaritei-logo.png">
+
+    </ion-card>
+  </ion-toolbar>
+
+  <ion-item-divider color="primary">MENU</ion-item-divider>
+
+<ion-list class="menu" >
+  <button ion-item (click)="contato()">
+      <ion-icon name="people" item-start></ion-icon>
+    Contato
+  </button>
+
+  <button ion-item (click)="sobre()">
+    <ion-icon name="medical" item-start></ion-icon>
+    Sobre nós 
+  </button>
+
+  <button ion-item (click)="aulas()">
+      <ion-icon name="film" item-start></ion-icon>
+    Vídeo Aulas
+  </button>
+  </ion-list>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

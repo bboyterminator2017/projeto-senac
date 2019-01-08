@@ -1,0 +1,60 @@
+<!--
+  Generated template for the NovoClientePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+  
+    
+    
+    <ion-title> Cadastro</ion-title>
+    
+  
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <h3>Cadastre-se aqui e tenha acesso ao nosso conteúdo!</h3>
+
+<form [formGroup]="formGroup" (ngSubmit)="cadastrar(); $event.preventDefault()">
+  
+  <ion-item>
+    <ion-label stacked>Nome*</ion-label>
+    <ion-input formControlName="nome" type="text"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label stacked>E-mail*</ion-label>
+    <ion-input formControlName="email" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Login*</ion-label>
+    <ion-input formControlName="login" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Senha*</ion-label>
+    <ion-input formControlName="senha" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Foto*</ion-label>
+    <ion-input formControlName="foto" type="file"></ion-input>
+  </ion-item>
+
+
+    
+  
+    <button ion-button block type="submit" [disabled]="formGroup.invalid">Criar conta</button>
+  </form>
+
+</ion-content>
+
+
