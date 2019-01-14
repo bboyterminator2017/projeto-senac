@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { HttpModule} from '@angular/http';
 
 import { MyApp } from './app.component';
 
@@ -10,10 +11,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from '../pages/home/home.module';
-import { FirebaseConfig } from '../config/firebase.config';
+import { environment } from '../environments/environments';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { StorageService } from '../service/storage.service';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,10 @@ import { StorageService } from '../service/storage.service';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    AngularFireModule.initializeApp(FirebaseConfig)
+    AngularFireModule.initializeApp(environment.firebase),
+    HttpModule,
+   
+
     
   ],
   bootstrap: [IonicApp],
@@ -34,8 +38,8 @@ import { StorageService } from '../service/storage.service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AngularFireAuth,
-    StorageService
+    StorageService,
+    AngularFireDatabase
   ]
 })
 export class AppModule {}

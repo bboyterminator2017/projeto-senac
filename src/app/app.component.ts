@@ -8,7 +8,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  firebaseauth: any;
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = 'HomePage';

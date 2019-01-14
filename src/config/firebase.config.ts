@@ -1,4 +1,4 @@
-export const FirebaseConfig = {
+/*export const FirebaseConfig = {
 
     apiKey: "AIzaSyAoehk0MEBLYFRrzPlA8OvIRC8GwwKuFak",
     authDomain: "gabaritei-33b66.firebaseapp.com",
@@ -7,3 +7,4 @@ export const FirebaseConfig = {
     storageBucket: "gabaritei-33b66.appspot.com",
     messagingSenderId: "820802789462"
   };
+*/

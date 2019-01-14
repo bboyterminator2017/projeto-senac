@@ -22,7 +22,7 @@
 
   <h3>Cadastre-se aqui e tenha acesso ao nosso conteúdo!</h3>
 
-<form [formGroup]="formGroup" (ngSubmit)="cadastrar(); $event.preventDefault()">
+<form [formGroup]="formGroup" (ngSubmit)="cadastraContato(); $event.preventDefault()">
   
   <ion-item>
     <ion-label stacked>Nome*</ion-label>
@@ -32,6 +32,32 @@
   <ion-item>
     <ion-label stacked>E-mail*</ion-label>
     <ion-input formControlName="email" type="text"></ion-input>
+  </ion-item>
+  
+  
+  <ion-item>
+    <ion-label stacked>CEP*</ion-label>
+    <ion-input formControlName="cep" type="text" (ionBlur)="enderecoAutomatico()"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Rua*</ion-label>
+    <ion-input formControlName="rua" type="text" disabled></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Bairro*</ion-label>
+    <ion-input formControlName="bairro" type="text" disabled></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Cidade*</ion-label>
+    <ion-input formControlName="cidade" type="text" disabled></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Estado*</ion-label>
+    <ion-input formControlName="estado" type="text" disabled></ion-input>
   </ion-item>
 
   <ion-item>
@@ -43,6 +69,11 @@
     <ion-label stacked>Senha*</ion-label>
     <ion-input formControlName="senha" type="text"></ion-input>
   </ion-item>
+
+  <!--<ion-item>
+    <ion-label stacked>Confirmar senha*</ion-label>
+    <ion-input formControlName="confirmarSenha" type="text"></ion-input>
+  </ion-item>-->
 
   <ion-item>
     <ion-label stacked>Foto*</ion-label>
