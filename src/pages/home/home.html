@@ -4,25 +4,26 @@
 
 <ion-content id="conteudo" padding>
 
-
+  
     <ion-card  id="conteudo-card">
         <img src="../assets/imgs/gabaritei-logo.png"/>
-        <ion-card-content>
-          
-        </ion-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="submitLogin()"> 
         <ion-list>
             <ion-item>
               <ion-label stacked></ion-label>
-              <ion-input type="text" placeholder="Login" class="login"></ion-input>
+              <ion-input type="text" placeholder="Login" class="login" formControlName="email"></ion-input>
             </ion-item>
             <ion-item >
         
               <ion-label stacked></ion-label>
-              <ion-input type="password" placeholder="Senha" class="senha"></ion-input>
+              <ion-input type="password" placeholder="Senha" class="senha" formControlName="password"></ion-input>
             </ion-item>
           </ion-list>
         
-          <button ion-button color="primary" block (click)="principal()">ENTRAR</button>
+          <button ion-button color="primary" [disabled]="loginForm.invalid">ENTRAR</button>
+        </form>
           <p id="link" (click)="cadastro()">Não tem cadastro? Clique aqui para se cadastrar.</p>
       </ion-card>
   </ion-content>
+
+  

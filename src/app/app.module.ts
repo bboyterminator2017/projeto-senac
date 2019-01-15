@@ -11,10 +11,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from '../pages/home/home.module';
-import { environment } from '../environments/environments';
+import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { StorageService } from '../service/storage.service';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     HttpModule,
+    
    
 
     
@@ -39,7 +41,8 @@ import { AngularFireDatabase } from '@angular/fire/database';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     StorageService,
-    AngularFireDatabase
+    AngularFireDatabase,
+    AngularFireAuth
   ]
 })
 export class AppModule {}

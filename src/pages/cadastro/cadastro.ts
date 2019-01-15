@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HomePage } from '../home/home';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { AngularFireDatabase} from '@angular/fire/database';
-/*import { ValidateConfirmarSenha } from '../../validators/confirmarSenha';*/
-
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @IonicPage()
 @Component({
@@ -15,14 +14,17 @@ import { AngularFireDatabase} from '@angular/fire/database';
 })
 export class CadastroPage {
 
+ 
   formGroup : FormGroup;
-
+  loginForm: FormGroup;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public http: Http,
-    public db: AngularFireDatabase
+    public db: AngularFireDatabase,
+    public afAuth: AngularFireAuth,
+    public alertCtrl: AlertController
 
   ){
 
@@ -37,7 +39,7 @@ export class CadastroPage {
       estado : ['', [Validators.required]],
       login : ['', [Validators.required]],
       senha : ['', [Validators.required]],
-      confirmarSenha: ['', [Validators.required, /*ValidateConfirmarSenha*/]],
+      /*confirmarSenha: ['', [Validators.required, ValidateConfirmarSenha]],*/
       foto : [null],  
     }); 
   }
@@ -63,24 +65,34 @@ export class CadastroPage {
 
   cadastraContato() {
   this.db.database.ref('/contatos').push(this.formGroup.value)
-  .then(() => {
-    console.log('Salvou!');
-    this.formGroup.reset();
-  })
+  this.afAuth.auth.createUserWithEmailAndPassword(
+    this.formGroup.value.email, this.formGroup.value.senha)
+    .then((response) => {
+      this.presentAlert('Usuário cadastrado!', 'Usuário cadastrado com sucesso.'),
+      this.navCtrl.setRoot('HomePage');
+    })
+    .catch((error) => {
+      if(error.code == 'auth/email-already-in-use')
+      this.presentAlert('Erro', 'E-mail já cadastrado!');
+        else if(error.code == 'auth/invalid-email')
+        this.presentAlert('Erro', 'Esse e-mail é inválido!');
+          else if(error.code == 'auth/invalid-email')
+          this.presentAlert('Erro', 'E-mail ou senha não permitido! Tente outro.');
+            else
+              this.presentAlert('Erro', 'A senha escolhida é fraca!\
+               Tente combinar números e letras.');
+    })
+      
+
   }
- 
 
- /* cadastrar(){
-    console.log(this.formGroup.value);
-
-    this.cadastroService.cadastrar(this.formGroup.value)
-    .subscribe(response => {
-      console.log("Cadastrado com sucesso");
-    },
-      error => {
-        console.log(error);
-      }
-    );
-  }*/
+  presentAlert(title: string, subtitle: string) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: subtitle,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 
 }
